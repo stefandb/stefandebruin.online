@@ -21,11 +21,51 @@
       </div>
     </div>
     <div v-show="true">
-      <div class="lg:container lg:mx-auto">
-        <div class=" grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mb-4">
-          <blog-post v-for="(post, index) in posts" :key="index" :post="post">
-          </blog-post>
-        </div>
+      <div class="lg:container lg:mx-auto mb-16">
+
+        <!-- <div class="flex flex-row">
+          <div class="flex items-center">
+            <font-awesome-icon :icon="'chevron-left'" size="2x"/>
+          </div>
+          <div class="flex space-x-4 w-full">
+            <blog-post class="w-1/3" v-for="(post, index) in posts" :key="index" :post="post" v-show="index < 3">
+            </blog-post>
+          </div>
+          <div class="flex items-center">
+            <font-awesome-icon :icon="'chevron-right'" size="2x"/>
+          </div>
+        </div> -->
+
+
+  <swiper
+    :slides-per-view="1"
+    :space-between="20"
+    :loop="true"
+    navigation
+    :autoplay="{
+        delay: 2500,
+        disableOnInteraction: false,
+      }"
+      :breakpoints="{
+    // when window width is >= 320px
+    640: {
+      slidesPerView: 2,
+      spaceBetween: 20
+    },
+    // when window width is >= 480px
+    1024: {
+      slidesPerView: 3,
+      spaceBetween: 30
+    }
+  }"
+  >
+     
+    <swiper-slide v-for="(post, index) in posts" :key="index">
+             <blog-post :post="post">
+            </blog-post>
+            </swiper-slide>
+  </swiper>
+
       </div>
     </div>
 
@@ -36,11 +76,22 @@
 import SocialIcon from "@/components/SocialIcon.vue";
 import BlogPost from "@/components/Cards/BlogPost.vue";
 
+import SwiperCore, { Navigation, Pagination, Scrollbar, A11y, Autoplay } from 'swiper';
+import { Swiper, SwiperSlide } from 'swiper/vue';
+  // install Swiper components
+  SwiperCore.use([Navigation, Pagination, Scrollbar, A11y, Autoplay]);
+
+  // Import Swiper styles
+  import 'swiper/swiper-bundle.css';
+
+
 export default {
   name: "Home",
   components: {
     SocialIcon,
-    BlogPost
+    BlogPost,
+    Swiper,
+    SwiperSlide
   },
   data: function(){
     return {
