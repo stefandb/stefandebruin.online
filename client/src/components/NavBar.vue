@@ -121,7 +121,7 @@ export default {
     },
     handleScroll () {
       // Get the current scroll position
-      const currentScrollPosition = window.pageYOffset || this.$refs['pageContent'].scrollTop
+      const currentScrollPosition = window.pageYOffset || this.$parent.$refs.pageContent.scrollTop
       console.log(currentScrollPosition); 
       // Because of momentum scrolling on mobiles, we shouldn't continue if it is less than zero
       if (currentScrollPosition < 0) {
