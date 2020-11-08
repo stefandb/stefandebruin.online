@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-col h-screen">
-    <nav-bar></nav-bar>
+    <nav-bar class="fixed  w-full justify-between flex-wrap  top-0 animated shadow-2xl"></nav-bar>
     <div class="overflow-y-auto" ref="pageContent">
       <router-view/>
     </div>

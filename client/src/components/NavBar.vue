@@ -4,7 +4,7 @@
         <div class="relative flex items-center justify-between h-16">
           <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
             <!-- Mobile menu button-->
-            <button class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:bg-gray-700 focus:text-white transition duration-150 ease-in-out" aria-label="Main menu" aria-expanded="false">
+            <button id="showobileMenu" @click="showMobileMenu" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:bg-gray-700 focus:text-white transition duration-150 ease-in-out" aria-label="Main menu" aria-expanded="false">
               <!-- Icon when menu is closed. -->
               <!--
                 Heroicon name: menu
@@ -32,7 +32,7 @@
             </div>
             <div class="hidden sm:block sm:ml-6">
               <div class="flex">
-                <a href="#" class="px-3 py-2 rounded-md text-sm font-medium leading-5 text-white bg-gray-900 focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out">Dashboard {{ showNavbar }}</a>
+                <a href="#" class="px-3 py-2 rounded-md text-sm font-medium leading-5 text-white bg-gray-900 focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out">Dashboard</a>
                 <a href="#" class="ml-4 px-3 py-2 rounded-md text-sm font-medium leading-5 text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out">Team</a>
                 <a href="#" class="ml-4 px-3 py-2 rounded-md text-sm font-medium leading-5 text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out">Projects</a>
                 <a href="#" class="ml-4 px-3 py-2 rounded-md text-sm font-medium leading-5 text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out">Calendar</a>
@@ -64,7 +64,7 @@
                   From: "transform opacity-100 scale-100"
                   To: "transform opacity-0 scale-95"
               -->
-              <div class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg" v-show="userDropdown" v-click-outside="{
+              <div class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg z-50 absolute" v-show="userDropdown" v-click-outside="{
       exclude: ['showUserDropdown'],
       handler: hideUserDropdown
     } ">
@@ -84,7 +84,10 @@
 
         Menu open: "block", Menu closed: "hidden"
       -->
-      <div class="hidden sm:hidden">
+      <div class=" md:hidden" v-show="mobileMenu" v-click-outside="{
+      exclude: ['showobileMenu'],
+      handler: hideMobileMenu
+    } ">
         <div class="px-2 pt-2 pb-3">
           <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-white bg-gray-900 focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out">Dashboard</a>
           <a href="#" class="mt-1 block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out">Team</a>
@@ -101,7 +104,8 @@ export default {
     return {
       showNavbar: false,
       lastScrollPosition: 0,
-      userDropdown: false
+      userDropdown: false,
+      mobileMenu: false,
     };
   },
   created() {
@@ -118,6 +122,12 @@ export default {
     },
     hideUserDropdown () {
         this.userDropdown = false;
+    },
+    showMobileMenu () {
+        this.mobileMenu = true;
+    },
+    hideMobileMenu () {
+        this.mobileMenu = false;
     },
     handleScroll () {
       // Get the current scroll position
