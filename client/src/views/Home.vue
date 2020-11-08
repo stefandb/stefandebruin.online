@@ -21,7 +21,7 @@
       </div>
     </div>
     <div v-show="true">
-      <div class="lg:container lg:mx-auto mb-16">
+      <div class="px-4 lg:px-0 lg:container mx-auto mb-16">
 
         <!-- <div class="flex flex-row">
           <div class="flex items-center">
