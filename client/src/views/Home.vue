@@ -61,7 +61,7 @@
   >
      
     <swiper-slide v-for="(post, index) in posts" :key="index">
-             <blog-post :post="post">
+             <blog-post :post="post" class="bg-opacity-50 rounded-lg">
             </blog-post>
             </swiper-slide>
   </swiper>
