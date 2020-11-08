@@ -3,9 +3,9 @@
     <div class="flex items-center justify-center pb-8 w-full font-bold text-xl">
       <!-- <router-link :to="link"> -->{{ post.title }} <!--</router-link> -->
     </div>
-    <article class="h-36">{{ post.summary }}</article>
+    <article class="h-40 text-left">{{ post.summary }}</article>
     <div class="text-xs text-gray-600 flex justify-end">
-      {{ createdAtObject }}
+      {{ $filters.dateFormat(createdAtObject, "DD-MM-YYYY hh:mm") }}
     </div>
   </card>
 </template>

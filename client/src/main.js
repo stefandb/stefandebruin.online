@@ -56,4 +56,23 @@ const clickOutside = {
   }
 };
 
-createApp(App).component("font-awesome-icon", FontAwesomeIcon).use(router).use(VTooltip).directive('click-outside', clickOutside).mount('#app')
+import { dateFormat } from "@vuejs-community/vue-filter-date-format";
+
+const app = createApp(App)
+  .component("font-awesome-icon", FontAwesomeIcon)
+  .use(router)
+  .use(VTooltip)
+  .directive('click-outside', clickOutside);
+
+  console.log(dateFormat);
+
+app.config.globalProperties.$filters = {
+  currencyUSD(value) {
+    return '$' + value
+  },
+  dateFormat
+}
+ 
+
+
+app.mount('#app');
