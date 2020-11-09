@@ -4,14 +4,14 @@
         <div class="relative flex items-center justify-between h-16">
           <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
             <!-- Mobile menu button-->
-            <button id="showobileMenu" @click="showMobileMenu" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:bg-gray-700 focus:text-white transition duration-150 ease-in-out" aria-label="Main menu" aria-expanded="false">
+            <button id="showobileMenu" @click="toggleMobileMenu" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:bg-gray-700 focus:text-white transition duration-150 ease-in-out" aria-label="Main menu" aria-expanded="false">
               <!-- Icon when menu is closed. -->
               <!--
                 Heroicon name: menu
 
                 Menu open: "hidden", Menu closed: "block"
               -->
-              <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg class=" h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" v-show="!mobileMenu">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
               </svg>
               <!-- Icon when menu is open. -->
@@ -20,7 +20,7 @@
 
                 Menu open: "block", Menu closed: "hidden"
               -->
-              <svg class="hidden h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" v-show="mobileMenu">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
               </svg>
             </button>
@@ -50,7 +50,7 @@
             <!-- Profile dropdown -->
             <div class="ml-3 relative">
               <div>
-                <button ref="showUserDropdown" id="showUserDropdown" @click=showUserDropdown class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-white transition duration-150 ease-in-out" aria-label="User menu" aria-haspopup="true">
+                <button ref="showUserDropdown" id="showUserDropdown" @click=toggleUserDropdown class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-white transition duration-150 ease-in-out" aria-label="User menu" aria-haspopup="true">
                   <img class="h-8 w-8 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
                 </button>
               </div>
@@ -117,14 +117,14 @@ export default {
     window.removeEventListener('scroll', this.handleScroll)
   },
   methods: {
-    showUserDropdown () {
-        this.userDropdown = true;
+    toggleUserDropdown () {
+        this.userDropdown = !this.userDropdown;
     },
     hideUserDropdown () {
         this.userDropdown = false;
     },
-    showMobileMenu () {
-        this.mobileMenu = true;
+    toggleMobileMenu () {
+        this.mobileMenu = !this.mobileMenu;
     },
     hideMobileMenu () {
         this.mobileMenu = false;
