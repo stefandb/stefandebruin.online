@@ -5,7 +5,7 @@
     :style="{backgroundImage: 'url(' + require('../assets/images/backgrounds/background-1.jpg') + ')'}"
   > -->
   <!-- </div> -->
-    <div class="w-full h-screen flex justify-center content-center flex-wrap z-50">
+    <div class="w-full h-screen flex justify-center content-center flex-wrap z-50 relative">
       <div class="w-full flex justify-center">
         <div class="text-black px-8 rounded-lg text-center border-2">
           <span class="font-bold text-4xl">Stefan de Bruin</span>
@@ -19,9 +19,19 @@
         <social-icon class="mx-5" :icon="['fab', 'bitbucket']" url="https://bitbucket.org/%7Baba10776-c6d7-427a-a898-616c63629386%7D/"></social-icon>
         <social-icon :icon="['fab', 'twitter']" url="https://twitter.com/stefan_d_b"></social-icon>
       </div>
+
+      <div class="absolute bottom-32">
+        <div class="w-full flex justify-center container relative h-16 ">
+          <div class="chevron"></div>
+          <div class="chevron"></div>
+          <div class="chevron clear-both"></div>
+
+        </div>
+      </div>
+      
     </div>
     <div v-show="true">
-      <div class="px-4 lg:px-0 lg:container mx-auto mb-16">
+      <div class="px-4 lg:px-0 lg:container mx-auto mb-4">
 
         <!-- <div class="flex flex-row">
           <div class="flex items-center">
@@ -103,7 +113,7 @@ export default {
   computed: {
     posts: function(){
       const items = [];
-      for (let i = 1; i <= 6; i++) {
+      for (let i = 1; i <= 2; i++) {
         items.push({
           title: "POST " + i,
           slug: "post-" + i,
@@ -118,11 +128,91 @@ export default {
 </script>
 
 <style>
+
+/* https://unsplash.com/photos/10MUSwtRqDs */
+/* https://unsplash.com/photos/U66UVEgitQU */
+/* https://unsplash.com/photos/dwJ_wgnL2CQ */
+/* https://unsplash.com/photos/GK2n1OAq7NE */
+/* https://unsplash.com/photos/-zvx4EoPRDw */
+/* https://unsplash.com/photos/C6brammAGKE */
+/* https://unsplash.com/photos/uvh5ODHadeE */
+/* https://unsplash.com/photos/6SbFGnQTE8s */
+/* https://unsplash.com/photos/qjgdslbEn-I */
+/* https://unsplash.com/photos/c43mlpzT0BU */
 body{
-  background-image: url('../assets/images/backgrounds/background-1.jpg');
+  background-image: url('../assets/images/backgrounds/marc-linnemann-GK2n1OAq7NE-unsplash.jpg');
   background-position: center;
   background-repeat: no-repeat!important;
   background-size: cover!important;
   height: 100vh!important;
 }
+
+
+.chevron {
+  position: absolute;
+  width: 28px;
+  height: 8px;
+  opacity: 0;
+  transform: scale3d(0.5, 0.5, 0.5);
+  animation: move 3s ease-out infinite;
+}
+
+.chevron:first-child {
+  animation: move 3s ease-out 1s infinite;
+}
+
+.chevron:last-child {
+  clear: both;
+}
+
+.chevron:nth-child(2) {
+  animation: move 3s ease-out 2s infinite;
+}
+
+.chevron:before,
+.chevron:after {
+  content: ' ';
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 51%;
+  background: black;
+}
+
+.chevron:before {
+  left: 0;
+  transform: skew(0deg, 30deg);
+}
+
+.chevron:after {
+  right: 0;
+  width: 50%;
+  transform: skew(0deg, -30deg);
+}
+
+@keyframes move {
+  25% {
+    opacity: 1;
+
+  }
+  33% {
+    opacity: 1;
+    transform: translateY(30px);
+  }
+  67% {
+    opacity: 1;
+    transform: translateY(40px);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(55px) scale3d(0.5, 0.5, 0.5);
+  }
+}
+
+@keyframes pulse {
+  to {
+    opacity: 1;
+  }
+}
 </style>
+
