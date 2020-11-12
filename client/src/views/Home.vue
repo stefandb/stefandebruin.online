@@ -50,24 +50,10 @@
   <swiper
     :slides-per-view="1"
     :space-between="20"
-    :loop="true"
-    navigation
-    :autoplay="{
-        delay: 2500,
-        disableOnInteraction: false,
-      }"
-      :breakpoints="{
-    // when window width is >= 320px
-    640: {
-      slidesPerView: 2,
-      spaceBetween: 20
-    },
-    // when window width is >= 480px
-    1024: {
-      slidesPerView: 3,
-      spaceBetween: 30
-    }
-  }"
+    :loop="swiperLoop"
+    :navigation="swiperNavigation"
+    :autoplay="swiperAutoplay"
+    :breakpoints="swiperBreakpoints"
   >
      
     <swiper-slide v-for="(post, index) in posts" :key="index">
@@ -75,7 +61,6 @@
             </blog-post>
             </swiper-slide>
   </swiper>
-
       </div>
     </div>
 
@@ -88,12 +73,16 @@ import BlogPost from "@/components/Cards/BlogPost.vue";
 
 import SwiperCore, { Navigation, Pagination, Scrollbar, A11y, Autoplay } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/vue';
+import { useQuery, useResult} from '@vue/apollo-composable'
   // install Swiper components
   SwiperCore.use([Navigation, Pagination, Scrollbar, A11y, Autoplay]);
 
   // Import Swiper styles
   import 'swiper/swiper-bundle.css';
 
+// import allPages from '@/gql/pages.query.gql'
+// import { useQuery, useResult } from '@vue/apollo-composable'
+import { postsQuery } from "@/gql/posts.query.js";
 
 export default {
   name: "Home",
@@ -105,23 +94,43 @@ export default {
   },
   data: function(){
     return {
-      postsf: [
-        
-      ]
+      posts: [],
+      swiperNavigation: false,
+      swiperLoop: true,
+      swiperAutoplay: {
+        enabled: false,
+        delay: 2500,
+        disableOnInteraction: false,
+      },
+      swiperBreakpoints: {
+        640: { slidesPerView: 2, spaceBetween: 20 },
+        1024: { slidesPerView: 3, spaceBetween: 30 }
+  }
     };
   },
-  computed: {
-    posts: function(){
-      const items = [];
-      for (let i = 1; i <= 2; i++) {
-        items.push({
-          title: "POST " + i,
-          slug: "post-" + i,
-          summary: "summary for post " + i,
-          createdAt: "2020-11-07 10:53:45",
-        });
+  setup() {
+  },
+  mounted () {
+    console.log("HJHJHJKHJHK");
+
+    const { result } = useQuery(postsQuery);
+
+    this.posts = useResult(result, null, data => data.getObjects.objects);
+    console.log("ASF", this.posts);
+    // if(this.posts.length >= 3){
+    //   this.swiperNavigation = true;
+    // }
+  },
+  watch: {
+    posts: function (val) {
+      if (Array.isArray(val)) {
+        if (val.length > 3) {
+          this.swiperNavigation = true;
+          this.swiperAutoplay.enabled = true;
+          this.swiperLoop = true;
+        }
       }
-      return items;
+      
     }
   }
 };

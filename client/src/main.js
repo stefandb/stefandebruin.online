@@ -1,7 +1,12 @@
-import { createApp } from 'vue'
+import { createApp, h, provide } from 'vue'
 import App from './App.vue'
 import router from './router'
 // import store from './store'
+
+import ApolloClient from "apollo-boost";
+import DefaultApolloClient from "@vue/apollo-composable";
+import VueApollo from 'vue-apollo'
+import { ApolloClients } from '@vue/apollo-composable'
 
 import '@/assets/css/app.css'
 import VTooltip from 'v-tooltip'
@@ -17,6 +22,14 @@ import {
 import { fab } from "@fortawesome/free-brands-svg-icons";
 
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+
+const apolloClient = new ApolloClient({
+  uri: `https://graphql.cosmicjs.com/v2`
+});
+
+const apolloProvider = new VueApollo({
+  defaultClient: apolloClient
+})
 
 library.add(
   // faCog,
@@ -58,10 +71,25 @@ const clickOutside = {
 
 import { dateFormat } from "@vuejs-community/vue-filter-date-format";
 
-const app = createApp(App)
+const app = createApp(
+  {
+    setup () {
+      provide(DefaultApolloClient, {
+        default: apolloClient,
+      });
+      provide(ApolloClients, {
+        default: apolloClient,
+      });
+    },
+    render() {
+      return h(App)
+    }
+  }
+)
   .component("font-awesome-icon", FontAwesomeIcon)
   .use(router)
   .use(VTooltip)
+  .use(apolloProvider)
   .directive('click-outside', clickOutside);
 
   console.log(dateFormat);
