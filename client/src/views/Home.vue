@@ -5,7 +5,7 @@
     :style="{backgroundImage: 'url(' + require('../assets/images/backgrounds/background-1.jpg') + ')'}"
   > -->
   <!-- </div> -->
-    <div class="w-full h-screen flex justify-center content-center flex-wrap z-50 relative">
+    <div class="w-full h-screen flex justify-center content-center flex-wrap z-50">
       <div class="w-full flex justify-center">
         <div class="text-black px-8 rounded-lg text-center border-2">
           <span class="font-bold text-4xl">Stefan de Bruin</span>
@@ -20,7 +20,7 @@
         <social-icon :icon="['fab', 'twitter']" url="https://twitter.com/stefan_d_b"></social-icon>
       </div>
 
-      <div class="absolute bottom-32">
+      <div class="w-full flex justify-center mt-32">
         <div class="w-full flex justify-center container relative h-16 ">
           <div class="chevron"></div>
           <div class="chevron"></div>
