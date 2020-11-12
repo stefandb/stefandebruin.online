@@ -1,14 +1,21 @@
 <template>
-<div class="mt-24 px-4 lg:px-0 lg:container mx-auto mb-16 bg-white overflow-hidden shadow rounded-lg bg-opacity-50">
+<div class="mt-24 px-4 lg:px-0 lg:container mx-auto mb-16 bg-white overflow-hidden shadow rounded-lg bg-opacity-75">
+
+<div v-if="loading">Loading...</div>
+
+
   <div class="px-4 py-5 sm:p-6">
       
 
 <div class="text-lg max-w-prose mx-auto mb-6">
       <p class="text-base text-center leading-6 text-indigo-600 font-semibold tracking-wide uppercase">Introducing</p>
-      <h1 class="mt-2 mb-8 text-3xl text-center leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl sm:leading-10">JavaScript for Beginners</h1>
-      <p class="text-xl text-gray-500 leading-8">Aliquet nec orci mattis amet quisque ullamcorper neque, nibh sem. At arcu, sit dui mi, nibh dui, diam eget aliquam. Quisque id at vitae feugiat egestas ac. Diam nulla orci at in viverra scelerisque eget. Eleifend egestas fringilla sapien.</p>
+      <h1 class="mt-2 mb-8 text-3xl text-center leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl sm:leading-10">{{post.title}}</h1>
+
+      
+
     </div>
-    <div class="prose prose-lg text-gray-500 mx-auto">
+    <div class="prose prose-lg text-gray-500 mx-auto" v-html="post.content"></div>
+    <!-- <div class="prose prose-lg text-gray-500 mx-auto">
       <p>Faucibus commodo massa rhoncus, volutpat. <strong>Dignissim</strong> sed <strong>eget risus enim</strong>. Mattis mauris semper sed amet vitae sed turpis id. Id dolor praesent donec est. Odio penatibus risus viverra tellus varius sit neque erat velit. Faucibus commodo massa rhoncus, volutpat. Dignissim sed eget risus enim. <a href="#">Mattis mauris semper</a> sed amet vitae sed turpis id.</p>
       <ul>
         <li>Quis elit egestas venenatis mattis dignissim.</li>
@@ -29,8 +36,42 @@
       <h3>Everything you need to get up and running</h3>
       <p>Purus morbi dignissim senectus mattis <a href="#">adipiscing</a>. Amet, massa quam varius orci dapibus volutpat cras. In amet eu ridiculus leo sodales cursus tristique. Tincidunt sed tempus ut viverra ridiculus non molestie. Gravida quis fringilla amet eget dui tempor dignissim. Facilisis auctor venenatis varius nunc, congue erat ac. Cras fermentum convallis quam.</p>
       <p>Faucibus commodo massa rhoncus, volutpat. Dignissim sed eget risus enim. Mattis mauris semper sed amet vitae sed turpis id. Id dolor praesent donec est. Odio penatibus risus viverra tellus varius sit neque erat velit.</p>
-    </div>
+    </div> -->
 
   </div>
 </div>
 </template>
+
+
+<script>
+import { gql } from "apollo-boost";
+import { useQuery, useResult } from '@vue/apollo-composable'
+
+export default {
+setup () {
+    const { result, loading } = useQuery(gql`query getUsers {
+  getObject(bucket_slug: "stefandebruin-portfolio", input: {
+    slug: "blog-post-2",
+    read_key: "Q6ghfLG2ggzTfLRUeircNrZ0jAlP87ccRZh0qUu7jIOIAvYcGP"
+  }) {
+    title
+    content
+    metadata
+  }
+}`);
+const post = useResult(result, null, data => data.getObject);
+
+    console.log(result, loading);
+
+    return {post, loading };
+  },
+
+  methods: {
+    showError () {
+      console.log(this.$route.path);
+      console.log(this.$router);
+      // router.push({ name: 'notFound', params: { '0': to.path } })
+    }
+  }
+}
+</script>

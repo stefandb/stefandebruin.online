@@ -13,7 +13,24 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import("../views/Blog/Read.vue")
+    component: () => import("../views/Blog/Read.vue"),
+    beforeEnter: (to, from, next) => {
+      function isValid (param) {
+         console.log("SLUG", param);
+         return true;
+      }
+   
+       if (!isValid(to.params.slug)) {
+         console.log("ASG", to.path);
+         let redirectPath = to.path;
+
+         if (redirectPath.charAt(0) == "/") redirectPath = redirectPath.substr(1)
+        router.push({ name: 'Notfound', params: { 'catchAll': redirectPath.split('/') } })
+        
+       }
+   
+       next();
+     }
   },
   {
     path: '/about',
@@ -25,8 +42,8 @@ const routes = [
   },
   {
     // path: "*",
-    path: "/:catchAll(.*)",
-    name: "NotFound",
+    path: "/:catchAll+",
+    name: "Notfound",
     component: () => import(/* webpackChunkName: "about" */ '../views/NotFound.vue'),
   }
 ]
