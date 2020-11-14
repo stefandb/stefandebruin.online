@@ -1,6 +1,7 @@
 import { createApp, h, provide } from 'vue'
 import App from './App.vue'
-import router from './router'
+
+import router from './router';
 // import store from './store'
 
 import ApolloClient from "apollo-boost";
@@ -74,6 +75,7 @@ import { dateFormat } from "@vuejs-community/vue-filter-date-format";
 const app = createApp(
   {
     setup () {
+
       provide(DefaultApolloClient, {
         default: apolloClient,
       });

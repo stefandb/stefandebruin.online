@@ -5,8 +5,6 @@
 
 
   <div class="px-4 py-5 sm:p-6">
-      
-
 <div class="text-lg max-w-prose mx-auto mb-6">
       <p class="text-base text-center leading-6 text-indigo-600 font-semibold tracking-wide uppercase">Introducing</p>
       <h1 class="mt-2 mb-8 text-3xl text-center leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl sm:leading-10">{{post.title}}</h1>
@@ -44,26 +42,45 @@
 
 
 <script>
+import {computed, onMounted} from "vue";
+
 import { gql } from "apollo-boost";
 import { useQuery, useResult } from '@vue/apollo-composable'
+import { onError } from '@apollo/client/link/error'
+import { useRoute } from 'vue-router'
 
 export default {
 setup () {
-    const { result, loading } = useQuery(gql`query getUsers {
+
+    const route = useRoute()
+
+    const { result, loading, error } = useQuery(
+      gql`query blogPost($slug: String!){
   getObject(bucket_slug: "stefandebruin-portfolio", input: {
-    slug: "blog-post-2",
+    slug: $slug,
     read_key: "Q6ghfLG2ggzTfLRUeircNrZ0jAlP87ccRZh0qUu7jIOIAvYcGP"
   }) {
     title
     content
     metadata
   }
-}`);
+}`,
+      {
+        "slug": route.params.slug
+      }
+    );
+
+
+    onError(error => {
+      console.log('error found 2');
+})
 const post = useResult(result, null, data => data.getObject);
+    return {
+      post,
+      loading,
+      error
+    }
 
-    console.log(result, loading);
-
-    return {post, loading };
   },
 
   methods: {
