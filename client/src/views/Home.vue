@@ -7,10 +7,10 @@
   <!-- </div> -->
     <div class="w-full h-screen flex justify-center content-center flex-wrap z-50">
       <div class="w-full flex justify-center">
-        <div class="text-black px-8 rounded-lg text-center border-2">
-          <span class="font-bold text-4xl">Stefan de Bruin</span>
+        <div class="text-black px-8 rounded-lg text-center border-2" >
+          <span class="font-bold text-4xl whitespace-pre overflow-hidden " ref="typeIt1">Stefan de Bruin</span>
           <hr />
-          <span class="font-thin text-2xl">Full stack developer</span>
+          <span class="font-thin text-2xl" ref="typeIt2">Full stack developer</span>
         </div>
       </div>
 
@@ -84,6 +84,8 @@ import { useQuery, useResult} from '@vue/apollo-composable'
 // import { useQuery, useResult } from '@vue/apollo-composable'
 import { postsQuery } from "@/gql/posts.query.js";
 
+import TypeIt from "typeit";
+
 export default {
   name: "Home",
   components: {
@@ -117,9 +119,19 @@ export default {
 
     this.posts = useResult(result, null, data => data.getObjects.objects);
     console.log("ASF", this.posts);
-    // if(this.posts.length >= 3){
-    //   this.swiperNavigation = true;
-    // }
+
+    let typeIt2 = new TypeIt(this.$refs.typeIt2, {
+      afterComplete: async (step, instance) => {
+        instance.destroy();
+      }
+    });
+    let typeIt1 = new TypeIt(this.$refs.typeIt1, {
+      afterComplete: async (step, instance) => {
+        instance.destroy();
+        typeIt2.go();
+      } 
+    }).go();
+    
   },
   watch: {
     posts: function (val) {
