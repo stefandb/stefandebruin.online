@@ -24,6 +24,9 @@ import { fab } from "@fortawesome/free-brands-svg-icons";
 
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
+import DefaultLayout from "@/layouts/Default";
+import FullPageLayout from "@/layouts/FullPage";
+
 const apolloClient = new ApolloClient({
   uri: `https://graphql.cosmicjs.com/v2`
 });
@@ -89,6 +92,8 @@ const app = createApp(
   }
 )
   .component("font-awesome-icon", FontAwesomeIcon)
+  .component('default-layout', DefaultLayout)
+  .component('full-page-layout', FullPageLayout)
   .use(router)
   .use(VTooltip)
   .use(apolloProvider)
