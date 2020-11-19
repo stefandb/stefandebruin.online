@@ -1,5 +1,5 @@
 <template>
-    <div class="mt-24 px-4 lg:px-0 lg:container mx-auto mb-16">
+    <div>
         <div class="grid grid-cols-3 gap-4">
             <blog-post v-for="(post, index) in posts" :key="index" :post="post" class="bg-opacity-50 rounded-lg">
             </blog-post>

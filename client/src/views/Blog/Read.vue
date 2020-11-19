@@ -1,5 +1,5 @@
 <template>
-<div class="mt-24 px-4 lg:px-0 lg:container mx-auto mb-16 bg-white overflow-hidden shadow rounded-lg bg-opacity-75">
+<div class=" bg-white overflow-hidden shadow rounded-lg bg-opacity-75">
 
 <div v-if="loading">Loading...</div>
 
