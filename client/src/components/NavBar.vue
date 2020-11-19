@@ -32,8 +32,8 @@
             </div> -->
             <div class="hidden sm:block sm:ml-6">
               <div class="flex">
-                <desktop v-for="(route, index) in menuItems" :route="route.name" :key="index" :position="index" :class="{'ml-4': index > 1}">{{route.name}}</desktop>
-                    </div>
+                <desktop v-for="(route, index) in menuItems" :route="route.name" :key="index" :position="index" :class="{'ml-4': index > 0}">{{route.label}}</desktop>
+              </div>
             </div>
           </div>
           <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0 hidden">
@@ -86,7 +86,7 @@
       handler: hideMobileMenu
     } ">
         <div class="px-2 pt-2 pb-3">
-          <mobile v-for="(route, index) in menuItems" :route="route.name" :key="index" :position="index" :class="{'mt-1': index > 1}">{{route.name}}</mobile>
+          <mobile v-for="(route, index) in menuItems" :route="route.name" :key="index" :position="index" :class="{'mt-1': index > 1}">{{route.label}}</mobile>
           <!-- <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-white bg-gray-900 focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out">Blog</a> -->
           <!-- <a href="#" class="mt-1 block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out">Projects</a> -->
           <!-- <a href="#" class="mt-1 block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out">About</a> -->
@@ -98,6 +98,13 @@
 <script>
 import Desktop from "@/components/NavBar/Desktop.vue";
 import Mobile from "@/components/NavBar/Mobile.vue";
+
+const menuLabel = {
+  Home: "Home",
+  Blog_Index: "Blog",
+  Projects_Index: "projecten",
+  About: "Over"
+};
 
 export default {
   components: {
@@ -122,6 +129,7 @@ export default {
             this.menuItems.push({
               path: route.path,
               name: route.name,
+              label: menuLabel[route.name.replace('.', '_')],
             });
           }
       }
