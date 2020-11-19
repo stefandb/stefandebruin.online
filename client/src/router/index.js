@@ -6,7 +6,7 @@ const routes = [
     path: '/',
     name: 'Home',
     component: Home,
-    meta: { navBar: true }
+    meta: { navBar: true, layout: "full-page" }
   },
   {
     path: "/blog",
