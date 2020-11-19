@@ -1,5 +1,5 @@
 <template>
-    <div class="w-full mt-6 border-t flex items-center border-gray-600 text-white">
+    <div class="w-full mt-6 border-t flex items-center border-gray-600 text-white" v-show="totalItems >perPage">
         <div class="w-0 flex-1 flex ">
             <div class="hover:border-green-400 border-transparent border-t-2 pt-4 px-4">
                 Vorige
