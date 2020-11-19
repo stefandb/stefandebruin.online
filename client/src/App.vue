@@ -2,7 +2,10 @@
   <div class="flex flex-col h-screen">
     <nav-bar class="fixed  w-full justify-between flex-wrap  top-0 animated shadow-2xl"></nav-bar>
     <div class="overflow-y-auto" ref="pageContent">
-      <router-view/>
+      
+      <component :is="layout">
+        <router-view/>
+      </component>
     </div>
   </div>
 </template>
@@ -10,10 +13,17 @@
 <script>
 import NavBar from "@/components/NavBar.vue";
 
+const default_layout = 'default';
+
 export default {
   components: {
     NavBar
   },
+  computed: {
+    layout () {
+      return (this.$route.meta.layout || default_layout) + '-layout';
+    }
+  }
 }
 </script>
 
