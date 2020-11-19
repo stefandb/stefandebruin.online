@@ -5,7 +5,7 @@
             </blog-post>
         </div>
 
-        <pagination :currentPage="1" :totalItems="90" perPage="9"></pagination>
+        <pagination :currentPage="1" :totalItems="posts.length" perPage="12"></pagination>
     </div>
 </template>
 
