@@ -46,9 +46,6 @@ library.add(
 const clickOutside = {
   // When the bound element is mounted into the DOM...
   mounted(el, binding, vnode, prevVnode) {
-    console.log(vnode.component);
-    console.log(prevVnode);
-
     const handleOutsideClick = (e) => {
       e.stopPropagation()
       const { handler, exclude } = binding.value
@@ -99,15 +96,12 @@ const app = createApp(
   .use(apolloProvider)
   .directive('click-outside', clickOutside);
 
-  console.log(dateFormat);
-
 app.config.globalProperties.$filters = {
   currencyUSD(value) {
     return '$' + value
   },
   dateFormat
 }
- 
 
 
 app.mount('#app');

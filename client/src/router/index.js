@@ -23,7 +23,6 @@ const routes = [
     component: () => import("../views/Blog/Read.vue"),
     beforeEnter: (to, from, next) => {
       function isValid (param) {
-         console.log("SLUG", param);
          return true;
       }
    
