@@ -5,7 +5,7 @@
     </div>
     <article class="h-40 text-left">{{ post.metadata.summary }}</article>
     <div class="text-xs text-gray-600 flex justify-end">
-      {{ $filters.dateFormat(createdAtObject, "DD-MM-YYYY hh:mm") }}
+      {{ $filters.dateFormat(createdAtObject, "DD-MM-YYYY HH:mm") }}
     </div>
   </card>
 </template>
