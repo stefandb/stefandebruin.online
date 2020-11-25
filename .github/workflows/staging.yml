@@ -20,12 +20,15 @@ jobs:
     - name: Yarn Install
       run: |
         yarn install
+      working-directory: client
     - name: Staging Build
       run: |
         yarn build
+      working-directory: client
     - name: Unit Tests
       run: |
         yarn test
+      working-directory: client
     - name: Deploy to S3
       uses: jakejarvis/s3-sync-action@master
       with:
@@ -35,4 +38,4 @@ jobs:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         AWS_REGION: ${{ secrets.AWS_REGION }}
-        SOURCE_DIR: "build"
+        SOURCE_DIR: "client/build"
