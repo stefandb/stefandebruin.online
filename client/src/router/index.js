@@ -42,7 +42,7 @@ const routes = [
   {
     path: "/projects",
     name: "Projects.Index",
-    component: () => import('@/views/Blog/Index.vue'),
+    component: () => import('@/views/Projects/Index.vue'),
     meta: { navBar: true }
   },
 
