@@ -16,7 +16,8 @@ module.exports = {
       transform: ['disabled'],
       cursor: ['disabled', 'disabled-hover'],
       borderWidth: ['disabled-hover', 'active', 'focus'],
-      borderColor: ['disabled-hover', 'active', 'focus']
+      borderColor: ['disabled-hover', 'active', 'focus'],
+      textColor: ['disabled']
     }
   },
   plugins: [

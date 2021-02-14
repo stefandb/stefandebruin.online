@@ -1,12 +1,12 @@
 <template>
     <div class="w-full mt-6 border-t flex items-center border-gray-600 text-white select-none" v-show="totalItems > perPage">
         <div class="w-0 flex-1 flex ">
-            <button type="button" class="hover:border-green-400 border-transparent border-t-2 pt-4 px-4 transition ease-in duration-150 hover:scale-125 disabled:scale-100 disabled:transform-none transform disabled:cursor-default disabled-hover:border-transparent active:border-0 focus:border-green-400 focus:outline-none" :disabled="currentPage === 1" @click="perviousPage">
+            <button type="button" class="hover:border-green-400 border-transparent border-t-2 pt-4 px-4 transition ease-in duration-150 hover:scale-125 disabled:scale-100 disabled:transform-none transform disabled:cursor-default disabled-hover:border-transparent active:border-0 focus:border-green-400 focus:outline-none disabled:text-gray-500" :disabled="currentPage === 1" @click="perviousPage">
                 Vorige
             </button>
         </div>
 
-        <div class="flex hidden sm:flex">
+        <div class="hidden sm:flex">
             <button type="button" class="hover:border-green-400 border-transparent border-t-2 pt-4 px-4 transition ease-in duration-150 hover:scale-125 disabled:scale-100 disabled:transform-none transform disabled:cursor-default disabled-hover:border-purple-400 active:border-0 focus:border-0 focus:outline-none" :class="{'border-purple-400 text-purple-400': isActive(1)}" @click="goToPage(1)" :disabled="currentPage === 1">
                 1
             </button>
@@ -28,10 +28,14 @@
                 {{ lastPage }}
             </button>
         </div>
-
+        <div class="flex sm:hidden">
+            <div class="pt-4 px-4 border-transparent border-t-2 border-purple-400 text-purple-400">
+                {{currentPage}}
+            </div>
+        </div>
 
         <div class="w-0 flex-1 flex justify-end ">
-            <button type="button" class="hover:border-green-400 border-transparent border-t-2 pt-4 px-4 transition ease-in duration-150 hover:scale-125 disabled:scale-100 disabled:transform-none transform disabled:cursor-default disabled-hover:border-transparent active:border-0 focus:order-green-400 focus:outline-none" :disabled="currentPage === lastPage" @click="nextPage">
+            <button type="button" class="hover:border-green-400 border-transparent border-t-2 pt-4 px-4 transition ease-in duration-150 hover:scale-125 disabled:scale-100 disabled:transform-none transform disabled:cursor-default disabled-hover:border-transparent active:border-0 focus:order-green-400 focus:outline-none disabled:text-gray-500" :disabled="currentPage === lastPage" @click="nextPage">
                 Volgende
             </button>
         </div>
