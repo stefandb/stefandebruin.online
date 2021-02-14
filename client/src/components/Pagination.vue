@@ -29,8 +29,8 @@
             </button>
         </div>
         <div class="flex sm:hidden">
-            <div class="pt-4 px-4 border-transparent border-t-2 border-purple-400 text-purple-400">
-                {{currentPage}}
+            <div class="pt-4 px-4 border-transparent border-t-2">
+                {{currentPage}} / {{ lastPage }}
             </div>
         </div>
 
