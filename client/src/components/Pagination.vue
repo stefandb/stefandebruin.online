@@ -11,7 +11,7 @@
                 1
             </button>
             
-            <div class="pt-4 px-4 border-transparent border-t-2" :class="{'border-purple-400 text-purple-400': isActive('d')}" v-if="(pages[0] - 1) !== 1">
+            <div class="pt-4 px-4 border-transparent border-t-2" :class="{'border-purple-400 text-purple-400': isActive('d')}" v-if="(pages[0] - 1) !== 1 && pages.length > 2">
                 ...
             </div>
             
@@ -20,7 +20,7 @@
                 {{ page }}
             </button>
 
-            <div class="pt-4 px-4 border-transparent border-t-2" :class="{'border-purple-400 text-purple-400': isActive('d')}" v-if="(Number(pages.slice(-1)) + 1) !== lastPage">
+            <div class="pt-4 px-4 border-transparent border-t-2" :class="{'border-purple-400 text-purple-400': isActive('d')}" v-if="(Number(pages.slice(-1)) + 1) !== lastPage && pages.length > 2">
                 ...
             </div>
 
