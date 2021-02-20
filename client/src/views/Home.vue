@@ -20,49 +20,20 @@
         <social-icon :icon="['fab', 'twitter']" url="https://twitter.com/stefan_d_b"></social-icon>
       </div>
 
-      <div class="w-full flex justify-center mt-32">
+      <!-- <div class="w-full flex justify-center mt-32">
         <div class="w-full flex justify-center container relative h-16 ">
           <div class="chevron"></div>
           <div class="chevron"></div>
           <div class="chevron clear-both"></div>
 
         </div>
-      </div>
+      </div> -->
       
     </div>
-    <div v-show="true">
-      <div class="px-4 lg:px-0 lg:container mx-auto mb-4">
-
-        <!-- <div class="flex flex-row">
-          <div class="flex items-center">
-            <font-awesome-icon :icon="'chevron-left'" size="2x"/>
-          </div>
-          <div class="flex space-x-4 w-full">
-            <blog-post class="w-1/3" v-for="(post, index) in posts" :key="index" :post="post" v-show="index < 3">
-            </blog-post>
-          </div>
-          <div class="flex items-center">
-            <font-awesome-icon :icon="'chevron-right'" size="2x"/>
-          </div>
-        </div> -->
-
-
-  <swiper
-    :slides-per-view="1"
-    :space-between="20"
-    :loop="swiperLoop"
-    :navigation="swiperNavigation"
-    :autoplay="swiperAutoplay"
-    :breakpoints="swiperBreakpoints"
-  >
-     
-    <swiper-slide v-for="(post, index) in posts" :key="index">
-             <blog-post :post="post" class="bg-opacity-50 rounded-lg">
-            </blog-post>
-            </swiper-slide>
-  </swiper>
-      </div>
-    </div>
+    <!-- <div v-show="true"> -->
+      <!-- <div class="px-4 lg:px-0 lg:container mx-auto mb-4"> -->
+      <!-- </div> -->
+    <!-- </div> -->
 
 </div>
 </template>
@@ -71,14 +42,14 @@
 import SocialIcon from "@/components/SocialIcon.vue";
 import BlogPost from "@/components/Cards/BlogPost.vue";
 
-import SwiperCore, { Navigation, Pagination, Scrollbar, A11y, Autoplay } from 'swiper';
-import { Swiper, SwiperSlide } from 'swiper/vue';
+// import SwiperCore, { Navigation, Pagination, Scrollbar, A11y, Autoplay } from 'swiper';
+// import { Swiper, SwiperSlide } from 'swiper/vue';
 import { useQuery, useResult} from '@vue/apollo-composable'
   // install Swiper components
-  SwiperCore.use([Navigation, Pagination, Scrollbar, A11y, Autoplay]);
+  // SwiperCore.use([Navigation, Pagination, Scrollbar, A11y, Autoplay]);
 
   // Import Swiper styles
-  import 'swiper/swiper-bundle.css';
+  // import 'swiper/swiper-bundle.css';
 
 // import allPages from '@/gql/pages.query.gql'
 // import { useQuery, useResult } from '@vue/apollo-composable'
@@ -90,9 +61,9 @@ export default {
   name: "Home",
   components: {
     SocialIcon,
-    BlogPost,
-    Swiper,
-    SwiperSlide
+    // BlogPost,
+    // Swiper,
+    // SwiperSlide
   },
   data: function(){
     return {
