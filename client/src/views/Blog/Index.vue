@@ -1,6 +1,7 @@
 <template>
     <div>
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-2 gap-4">
             <template v-if="loading">
                 <loading-blog-post class="bg-opacity-50 rounded-lg"/>
                 <loading-blog-post class="bg-opacity-50 rounded-lg"/>
@@ -16,7 +17,7 @@
             </template>
         </div>
 
-        <pagination :currentPage="1" :totalItems="2" perPage="12"></pagination>
+        <pagination :currentPage="currentPage" :totalItems="posts?.length" perPage="8" @new-page-index="goToPage"></pagination>
     </div>
 </template>
 
@@ -33,11 +34,16 @@ export default {
         Pagination,
         LoadingBlogPost
     },
+    data() {
+        return { currentPage: 1 }
+    },
     setup () {
         const { result, loading } = useQuery(postsQuery,  {
             'bucketSlug': process.env.VUE_APP_COSMICJS_BUCKET,
             'readKey': process.env.VUE_APP_COSMICJS_READ_KEY,
         });
+        let currentPage = 1;
+
         const posts = useResult(result, null, data => data.getObjects.objects);
 
         const noPosts = {
@@ -48,7 +54,15 @@ export default {
             published_at: Date.now(),
         };
 
+        
         return {posts, loading, noPosts};
+    },
+    methods: {
+        goToPage ($event) {
+            console.log($event);
+            this.currentPage = $event;
+
+        }
     }
 }
 </script>
