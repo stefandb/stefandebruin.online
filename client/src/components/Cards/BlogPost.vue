@@ -1,7 +1,7 @@
 <template>
   <card>
     <div class="flex items-center justify-center pb-8 w-full font-bold text-xl">
-      <!-- <router-link :to="link"> -->{{ post.title }} <!--</router-link> -->
+      <router-link :to="link">{{ post.title }}</router-link>
     </div>
     <article class="h-40 text-left">{{ post.metadata.summary }}</article>
     <div class="text-xs text-gray-600 flex justify-end">
