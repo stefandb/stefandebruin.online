@@ -9,6 +9,9 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {},
+    fontFamily: {
+      'akaya-kanadaka': ['"Akaya Kanadaka"', 'serif'] // Ensure fonts with spaces have " " surrounding it.
+    },
   },
   variants: {
     extend: {

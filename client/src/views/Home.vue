@@ -8,9 +8,9 @@
     <div class="w-full h-screen flex justify-center content-center flex-wrap z-50">
       <div class="w-full flex justify-center">
         <div class="text-black px-8 rounded-lg text-center border-2" >
-          <span class="font-bold text-4xl whitespace-pre overflow-hidden " ref="typeIt1">Stefan de Bruin</span>
+          <span class="font-bold text-6xl whitespace-pre overflow-hidden font-akaya-kanadaka" ref="typeIt1">Stefan de Bruin</span>
           <hr />
-          <span class="font-thin text-2xl" ref="typeIt2">Full stack developer</span>
+          <span class="font-thin text-3xl font-akaya-kanadaka" ref="typeIt2">Full stack developer</span>
         </div>
       </div>
 
@@ -84,12 +84,9 @@ export default {
   setup() {
   },
   mounted () {
-    console.log("HJHJHJKHJHK");
+    // const { result } = useQuery(postsQuery);
 
-    const { result } = useQuery(postsQuery);
-
-    this.posts = useResult(result, null, data => data.getObjects.objects);
-    console.log("ASF", this.posts);
+    // this.posts = useResult(result, null, data => data.getObjects.objects);
 
     let typeIt2 = new TypeIt(this.$refs.typeIt2, {
       afterComplete: async (step, instance) => {
