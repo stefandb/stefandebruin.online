@@ -1,6 +1,6 @@
 <template>
   <card>
-    <div class="flex items-center justify-center pb-2 sm:pb-8 w-full font-bold text-xl">
+    <div class="flex items-center justify-center pb-2 xl:pb-8 w-full font-bold text-xl">
       <router-link :to="link">{{ post.title }}</router-link>
     </div>
     <!-- v-if="'thumbnail' in post.metadata" -->
@@ -9,14 +9,14 @@
           <picture>
             <source media="(min-width:650px)" srcset="https://imgix.cosmicjs.com/68202630-7546-11eb-88e5-b1d69d639893-IMG20210221141830.jpg?fit=crop">
             <source media="(min-width:465px)" srcset="https://imgix.cosmicjs.com/68202630-7546-11eb-88e5-b1d69d639893-IMG20210221141830.jpg?fit=crop">
-            <img src="https://imgix.cosmicjs.com/68202630-7546-11eb-88e5-b1d69d639893-IMG20210221141830.jpg?fit=clamp" alt="Flowers" class="rounded-t-lg w-full h-48 object-cover">
+            <img src="https://imgix.cosmicjs.com/68202630-7546-11eb-88e5-b1d69d639893-IMG20210221141830.jpg?fit=clamp" alt="Flowers" class="rounded-t-lg w-full h-48 sm:h-56  object-cover">
           </picture>
         </router-link>
 
         <!-- <img :src="post.metadata.thumbnail.imgix_url+'?fit=crop&h=300'" class="rounded-l-lg"/> -->
       </template>
-    <article class="h-40 text-left font-serif">
-      {{ post.metadata.summary }}
+    <article class="h-40 sm:h-28 md:h-24 lg:h-36 xl:h-40 text-left font-serif">
+      {{ post.metadata.summary }} Heeft de juiste hardloopschoen een effect op voorkomen van blessures? Is een antipronatieschoen nog wel van deze tijd? En wat heeft de Nike React Infinity Run Flyknit 2 hiermee te maken? Een inhoudelijke…
       </article>
     <div class="text-xs text-gray-600 flex justify-end">
       {{ $filters.dateFormat(createdAtObject, "DD-MM-YYYY HH:mm") }}
