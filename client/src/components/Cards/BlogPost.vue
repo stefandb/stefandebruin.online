@@ -9,7 +9,7 @@
           <picture>
             <source media="(min-width:650px)" srcset="https://imgix.cosmicjs.com/68202630-7546-11eb-88e5-b1d69d639893-IMG20210221141830.jpg?fit=crop">
             <source media="(min-width:465px)" srcset="https://imgix.cosmicjs.com/68202630-7546-11eb-88e5-b1d69d639893-IMG20210221141830.jpg?fit=crop">
-            <img src="https://imgix.cosmicjs.com/68202630-7546-11eb-88e5-b1d69d639893-IMG20210221141830.jpg?fit=clamp" alt="Flowers" class="rounded-t-lg w-full h-48 sm:h-56  object-cover">
+            <img src="https://imgix.cosmicjs.com/68202630-7546-11eb-88e5-b1d69d639893-IMG20210221141830.jpg?fit=clamp" alt="Flowers" class="rounded-t-lg xl:rounded-l-lg xl:rounded-t-none w-full h-48 sm:h-56 xl:w-64 xl:h-full object-cover">
           </picture>
         </router-link>
 
