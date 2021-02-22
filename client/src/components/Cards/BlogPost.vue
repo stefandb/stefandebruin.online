@@ -3,7 +3,19 @@
     <div class="flex items-center justify-center pb-8 w-full font-bold text-xl">
       <router-link :to="link">{{ post.title }}</router-link>
     </div>
-    <article class="h-40 text-left">{{ post.metadata.summary }}</article>
+    <!-- v-if="'thumbnail' in post.metadata" -->
+      <template v-slot:image >
+        <picture>
+          <source media="(min-width:650px)" srcset="https://imgix.cosmicjs.com/68202630-7546-11eb-88e5-b1d69d639893-IMG20210221141830.jpg?fit=crop">
+          <source media="(min-width:465px)" srcset="https://imgix.cosmicjs.com/68202630-7546-11eb-88e5-b1d69d639893-IMG20210221141830.jpg?fit=crop">
+          <img src="https://imgix.cosmicjs.com/68202630-7546-11eb-88e5-b1d69d639893-IMG20210221141830.jpg?fit=clamp" alt="Flowers" class="rounded-t-lg w-full h-48 object-cover">
+        </picture>
+
+        <!-- <img :src="post.metadata.thumbnail.imgix_url+'?fit=crop&h=300'" class="rounded-l-lg"/> -->
+      </template>
+    <article class="h-40 text-left font-serif">
+      {{ post.metadata.summary }}
+      </article>
     <div class="text-xs text-gray-600 flex justify-end">
       {{ $filters.dateFormat(createdAtObject, "DD-MM-YYYY HH:mm") }}
     </div>

@@ -1,5 +1,8 @@
 <template>
-  <div class="bg-white p-8 flex flex-col shadow-lg hover:shadow-2xl">
-    <slot></slot>
+  <div class="bg-white"> <!-- flex -->
+    <slot name="image" class=""></slot> <!-- flex-1 -->
+    <div class="p-8 flex flex-col shadow-lg hover:shadow-2xl"> <!-- flex-1 -->
+      <slot></slot>
+    </div>
   </div>
 </template>
