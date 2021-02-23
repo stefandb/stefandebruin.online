@@ -4,11 +4,6 @@ import App from './App.vue'
 import router from './router';
 // import store from './store'
 
-import ApolloClient from "apollo-boost";
-import DefaultApolloClient from "@vue/apollo-composable";
-import VueApollo from 'vue-apollo'
-import { ApolloClients } from '@vue/apollo-composable'
-
 import '@/assets/css/app.css'
 import VTooltip from 'v-tooltip'
 
@@ -27,13 +22,28 @@ import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import DefaultLayout from "@/layouts/Default";
 import FullPageLayout from "@/layouts/FullPage";
 
-const apolloClient = new ApolloClient({
-  uri: `https://graphql.cosmicjs.com/v2`
-});
+import { ApolloClient, createHttpLink, InMemoryCache } from '@apollo/client/core';
+import { DefaultApolloClient } from '@vue/apollo-composable'
 
-const apolloProvider = new VueApollo({
-  defaultClient: apolloClient
+
+// HTTP connection to the API
+const httpLink = createHttpLink({
+  // You should use an absolute URL here
+  uri: 'https://graphql.cosmicjs.com/v2',
 })
+
+// Cache implementation
+const cache = new InMemoryCache()
+
+// Create the apollo client
+const apolloClient = new ApolloClient({
+  link: httpLink,
+  cache,
+})
+
+
+
+
 
 library.add(
   // faCog,
@@ -76,12 +86,7 @@ const app = createApp(
   {
     setup () {
 
-      provide(DefaultApolloClient, {
-        default: apolloClient,
-      });
-      provide(ApolloClients, {
-        default: apolloClient,
-      });
+      provide(DefaultApolloClient, apolloClient)
     },
     render() {
       return h(App)
@@ -93,7 +98,6 @@ const app = createApp(
   .component('full-page-layout', FullPageLayout)
   .use(router)
   .use(VTooltip)
-  .use(apolloProvider)
   .directive('click-outside', clickOutside);
 
 app.config.globalProperties.$filters = {

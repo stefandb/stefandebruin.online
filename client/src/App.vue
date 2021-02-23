@@ -1,7 +1,7 @@
 <template>
-  <div class="flex flex-col h-screen">
-    <nav-bar class="fixed  w-full justify-between flex-wrap  top-0 animated shadow-2xl"></nav-bar>
-    <div class="overflow-y-auto" ref="pageContent">
+  <div class="flex flex-col h-screen debug-screens">
+    <nav-bar class="fixed  w-full justify-between flex-wrap  top-0 animated shadow-2xl font-serif"></nav-bar>
+    <div class="overflow-y-auto" ref="pageContent" id="w">
       
       <component :is="layout">
         <router-view/>
