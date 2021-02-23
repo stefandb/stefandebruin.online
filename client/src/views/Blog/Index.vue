@@ -12,7 +12,7 @@
                 <loading-blog-post class="bg-opacity-50 rounded-lg"/>
             </template>
             <template v-if="!loading">
-                <blog-post v-for="(post, index) in result.getObjects.objects" :key="index" :post="post" class="bg-opacity-75 rounded-lg">
+                <blog-post v-for="(post, index) in result.getObjects.objects" :key="index" :post="post" class="bg-opacity-75 rounded-lg ">
                 </blog-post>
             </template>
             <template v-if="!loading && posts === null">
