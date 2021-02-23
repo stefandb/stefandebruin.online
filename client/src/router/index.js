@@ -15,13 +15,19 @@ const routes = [
     meta: { navBar: true }
   },
   {
+    path: "/blog/page/:page",
+    name: "Blog.Page",
+    component: () => import('@/views/Blog/Index.vue'),
+    meta: { navBar: false }
+  },
+  {
     path: "/blog/:slug",
     name: "Blog.Read",
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () => import("../views/Blog/Read.vue"),
-    beforeEnter: (to, from, next) => {
+    beforeEnterm: (to, from, next) => {
       function isValid (param) {
          return true;
       }
