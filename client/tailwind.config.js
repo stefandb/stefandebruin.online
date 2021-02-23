@@ -20,20 +20,36 @@ module.exports = {
       cursor: ['disabled', 'disabled-hover'],
       borderWidth: ['disabled-hover', 'active', 'focus'],
       borderColor: ['disabled-hover', 'active', 'focus'],
-      textColor: ['disabled']
+      textColor: ['disabled'],
+      order: ['hover', 'focus', 'even', 'group-even', 'group-odd']
     }
   },
   plugins: [
     require('@tailwindcss/forms'),
     require('@tailwindcss/typography'),
     require('@tailwindcss/aspect-ratio'),
-
+    require('tailwindcss-debug-screens'),
     plugin(function({ addVariant, e }) {
       addVariant('disabled-hover', ({ modifySelectors, separator }) => {
         modifySelectors(({ className }) => {
           return `.${e(`disabled-hover${separator}${className}`)}[disabled]:hover`
         })
       })
+    }),
+    plugin(function({ addVariant, e }) {
+      addVariant('group-even', ({ modifySelectors, separator }) => {
+        modifySelectors(({ className }) => {
+          return `.group:nth-child(even) .${e(`group-even${separator}${className}`)}`
+        })
+      })
+    }),
+    plugin(function({ addVariant, e }) {
+      addVariant('group-odd', ({ modifySelectors, separator }) => {
+        modifySelectors(({ className }) => {
+          return `.group:nth-child(odd) .${e(`group-odd${separator}${className}`)}`
+        })
+      })
     })
+
   ],
 }
