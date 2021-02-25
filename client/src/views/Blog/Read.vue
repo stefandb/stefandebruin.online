@@ -10,11 +10,12 @@
       </div>
     </card>
 
-    <card class="bg-white shadow rounded-lg bg-opacity-75 mt-7" v-if="loading === false">
-      {{ $filters.dateFormat(post.published_at, "DD-MM-YYYY HH:mm") }}
+    <card class="bg-white shadow rounded-lg bg-opacity-75 mt-7 text-right" v-if="loading === false && post.published_at">
+
+      {{ $filters.dateFormat(new Date(post.published_at), "DD-MM-YYYY HH:mm") }}
     </card>
 
-    <card class="" v-if="loading">
+    <card class="bg-white shadow rounded-lg bg-opacity-75" v-if="loading">
       <div class="px-4 py-5 sm:p-6 animate-pulse">
         <div class="text-lg max-w-prose mx-auto mb-6">
           <h1 class="mt-2 mb-8 text-3xl text-center leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl sm:leading-10">
