@@ -3,23 +3,22 @@
     <div class="bg-white overflow-hidden shadow rounded-lg bg-opacity-75" v-if="loading === false">
       <div class="px-4 py-5 sm:p-6">
         <div class="text-lg max-w-prose mx-auto mb-6">
-          <p class="text-base text-center leading-6 text-indigo-600 font-semibold tracking-wide uppercase">Introducing</p>
           <h1 class="mt-2 mb-8 text-3xl text-center leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl sm:leading-10">{{post.title}}</h1>
         </div>
-        <div class="prose prose-lg text-gray-500 mx-auto" v-html="post.content">
+        <div class="prose lg:prose-xl max-w-full text-gray-500" v-html="post.content">
         </div>
       </div>
     </div>
-    
+
+
     <div class="bg-white overflow-hidden shadow rounded-lg bg-opacity-75" v-if="loading">
       <div class="px-4 py-5 sm:p-6 animate-pulse">
         <div class="text-lg max-w-prose mx-auto mb-6">
-          <p class="text-base text-center leading-6 text-indigo-600 font-semibold tracking-wide uppercase">Introducing</p>
           <h1 class="mt-2 mb-8 text-3xl text-center leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl sm:leading-10">
             <div class="h-4 bg-blue-400 rounded w-3/6 mx-auto"></div>
             </h1>
         </div>
-        <div class="prose prose-lg text-gray-500 mx-auto space-y-2">
+        <div class="prose-lg text-gray-500 mx-auto space-y-2">
           <div class="h-4 bg-blue-400 rounded "></div>
           <div class="h-4 bg-blue-400 rounded "></div>
           <div class="h-4 bg-blue-400 rounded "></div>
@@ -34,6 +33,7 @@
 <script>
 import {computed, onMounted} from "vue";
 
+import { SingleObject } from "@/gql/SingleObject.query.js";
 import { gql } from "apollo-boost";
 import { useQuery, useResult } from '@vue/apollo-composable'
 import { onError } from '@apollo/client/link/error'
@@ -44,37 +44,18 @@ setup () {
 
     const route = useRoute()
 
-    const loading = true;
-//     const { result, loading, error } = useQuery(
-//       gql`query blogPost($bucketSlug: String!, $readKey: String!, $slug: String!){
-//   getObject(bucket_slug: $bucketSlug, input: {
-//     slug: $slug,
-//     read_key: $readKey
-//   }) {
-//     title
-//     content
-//     metadata
-//   }
-// }`,
-//       {
-//         "slug": route.params.slug,
-//         'bucketSlug': process.env.VUE_APP_COSMICJS_BUCKET,
-//         'readKey': process.env.VUE_APP_COSMICJS_READ_KEY,
-//       }
-//     );
+console.log(SingleObject);
+
+    const { result, loading } = useQuery(SingleObject,  {
+        'bucketSlug': process.env.VUE_APP_COSMICJS_BUCKET,
+        'readKey': process.env.VUE_APP_COSMICJS_READ_KEY,
+        'slug': route.params.slug
+    });
 
 
-//     onError(error => {
-//       console.log('error found 2');
-// })
-// const post = useResult(result, null, data => data.getObject);
-//     return {
-//       post,
-//       loading,
-//       error
-//     }
+  const post = useResult(result, null, data => data.getObject);
 
-return {loading};
+  return {loading, post};
 
   },
 
@@ -87,3 +68,17 @@ return {loading};
   }
 }
 </script>
+
+<style>
+.prose img.fr-fil{
+    float: left;
+    margin: 5px 5px 5px 0;
+    max-width: calc(100% - 5px);
+}
+
+.prose img.fr-fir{
+    float: right;
+    margin: 5px 0 5px 5px;
+    max-width: calc(100% - 5px);
+}
+</style>

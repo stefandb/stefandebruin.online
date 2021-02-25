@@ -21,7 +21,8 @@ module.exports = {
       borderWidth: ['disabled-hover', 'active', 'focus'],
       borderColor: ['disabled-hover', 'active', 'focus'],
       textColor: ['disabled'],
-      order: ['hover', 'focus', 'even', 'group-even', 'group-odd']
+      order: ['hover', 'focus', 'even', 'group-even', 'group-odd'],
+      textColor: ['group-even', 'group-odd']
     }
   },
   plugins: [
@@ -29,6 +30,7 @@ module.exports = {
     require('@tailwindcss/typography'),
     require('@tailwindcss/aspect-ratio'),
     require('tailwindcss-debug-screens'),
+    require('tailwind-group-even-odd'),
     plugin(function({ addVariant, e }) {
       addVariant('disabled-hover', ({ modifySelectors, separator }) => {
         modifySelectors(({ className }) => {
@@ -36,20 +38,5 @@ module.exports = {
         })
       })
     }),
-    plugin(function({ addVariant, e }) {
-      addVariant('group-even', ({ modifySelectors, separator }) => {
-        modifySelectors(({ className }) => {
-          return `.group:nth-child(even) .${e(`group-even${separator}${className}`)}`
-        })
-      })
-    }),
-    plugin(function({ addVariant, e }) {
-      addVariant('group-odd', ({ modifySelectors, separator }) => {
-        modifySelectors(({ className }) => {
-          return `.group:nth-child(odd) .${e(`group-odd${separator}${className}`)}`
-        })
-      })
-    })
-
   ],
 }
