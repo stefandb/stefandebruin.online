@@ -10,6 +10,8 @@ query singleObject($bucketSlug: String!, $readKey: String!, $slug: String!){
     title
     content
     metadata
+    modified_at
+    published_at
   }
 }
 `;
