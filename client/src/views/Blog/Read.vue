@@ -3,7 +3,7 @@
     <card class="bg-white shadow rounded-lg bg-opacity-75" v-if="loading === false">
       <div class="px-4 py-5 sm:p-6">
         <div class="text-lg max-w-prose mx-auto mb-6">
-          <h1 class="mt-2 mb-8 text-3xl text-center leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl sm:leading-10">{{post.title}}</h1>
+          <h1 class="font-akaya-kanadaka mt-2 mb-8 text-3xl text-center leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl sm:leading-10">{{post.title}}</h1>
         </div>
         <div class="prose lg:prose-xl max-w-full text-gray-500" v-html="post.content">
         </div>
