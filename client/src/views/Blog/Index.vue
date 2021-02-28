@@ -78,7 +78,7 @@ export default {
         let currentPage = 'page' in route.params ? parseInt(route.params.page) : 1;
 
         // const posts = useResult(result, null, data => data.getObjects.objects);
-        // const totalItems = useResult(result, null, data => data.getObjects.total);
+        const totalItems = useResult(result, null, data => data.getObjects.total);
 
         const noPosts = {
             title: 'No posts found',
@@ -89,7 +89,7 @@ export default {
         };
 
         const posts = [];
-        const totalItems = 13;
+
         return {currentPage, loading, noPosts, posts, totalItems, fetchMore, result};
     },
     methods: {
