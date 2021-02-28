@@ -31,6 +31,7 @@ module.exports = {
     require('@tailwindcss/aspect-ratio'),
     require('tailwindcss-debug-screens'),
     require('tailwind-group-even-odd'),
+    require('@tailwindcss/aspect-ratio'),
     plugin(function({ addVariant, e }) {
       addVariant('disabled-hover', ({ modifySelectors, separator }) => {
         modifySelectors(({ className }) => {
