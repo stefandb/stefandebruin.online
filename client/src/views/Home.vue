@@ -7,7 +7,7 @@
   <!-- </div> -->
     <div class="w-full h-screen flex justify-center content-center flex-wrap z-50">
       <div class="w-full flex justify-center">
-        <div class="text-black px-8 rounded-lg text-center border-2" >
+        <div class="text-black px-4 sm:px-4 rounded-lg text-center border-2" >
           <span class="font-bold text-6xl whitespace-pre overflow-hidden font-akaya-kanadaka" ref="typeIt1">Stefan de Bruin</span>
           <hr />
           <span class="font-thin text-3xl font-akaya-kanadaka" ref="typeIt2">Full stack developer</span>
