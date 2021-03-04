@@ -14,9 +14,9 @@
         </div>
       </div>
 
-      <div class="w-full flex justify-center mt-5">
+      <div class="w-full flex justify-center mt-5 space-x-16">
         <social-icon :icon="['fab', 'github']" url="https://github.com/stefandb"></social-icon>
-        <social-icon class="mx-5" :icon="['fab', 'bitbucket']" url="https://bitbucket.org/%7Baba10776-c6d7-427a-a898-616c63629386%7D/"></social-icon>
+        <!-- <social-icon class="mx-5" :icon="['fab', 'bitbucket']" url="https://bitbucket.org/%7Baba10776-c6d7-427a-a898-616c63629386%7D/"></social-icon> -->
         <social-icon :icon="['fab', 'twitter']" url="https://twitter.com/stefan_d_b"></social-icon>
       </div>
 
